@@ -168,3 +168,65 @@ class PriceParameters {
       _$PriceParametersFromJson(json);
   Map<String, dynamic> toJson() => _$PriceParametersToJson(this);
 }
+
+@JsonSerializable()
+class DefaultPriceDataRequest {
+  /// Three-letter ISO currency code, in lowercase. Must be a supported currency. (REQUIRED)
+  final String currency;
+
+  /// A positive integer in cents representing how much to charge.
+  final int? unitAmount;
+
+  /// Same as [unitAmount], but supports up to 12 decimal places. (Optional)
+  final String? unitAmountDecimal;
+
+  /// The recurring components of a price such as interval and usage_type.
+  final Recurring? recurring;
+
+  /// Specifies whether the price includes taxes or not. Can be inclusive, exclusive, or unspecified.
+  final String? taxBehavior;
+
+  /// Additional currency options for the price.
+  final Map<String, CurrencyOptions>? currencyOptions;
+
+  DefaultPriceDataRequest({
+    required this.currency,
+    this.unitAmount,
+    this.unitAmountDecimal,
+    this.recurring,
+    this.taxBehavior,
+    this.currencyOptions,
+  });
+
+  factory DefaultPriceDataRequest.fromJson(Map<String, dynamic> json) =>
+      _$DefaultPriceDataRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DefaultPriceDataRequestToJson(this);
+}
+
+@JsonSerializable()
+class CurrencyOptions {
+  /// Amount in cents that is charged for the currency.
+  final int? unitAmount;
+
+  /// Same as [unitAmount], but supports up to 12 decimal places.
+  final String? unitAmountDecimal;
+
+  /// Specifies whether the price includes taxes or not. Can be inclusive, exclusive, or unspecified.
+  final String? taxBehavior;
+
+  /// The recurring components of a price such as interval and usage_type.
+  final Recurring? recurring;
+
+  CurrencyOptions({
+    this.unitAmount,
+    this.unitAmountDecimal,
+    this.taxBehavior,
+    this.recurring,
+  });
+
+  factory CurrencyOptions.fromJson(Map<String, dynamic> json) =>
+      _$CurrencyOptionsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CurrencyOptionsToJson(this);
+}
