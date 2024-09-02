@@ -93,6 +93,12 @@ class CreateCheckoutSessionRequest {
   /// Sessions in subscription mode.
   final SubscriptionData? subscriptionData;
 
+  /// Set of key-value pairs that you can attach to an object. This can be
+  /// useful for storing additional information about the object in a structured
+  /// format. Individual keys can be unset by posting an empty value to them.
+  /// All keys can be unset by posting an empty value to metadata.
+  final Map<String, dynamic>? metadata;
+
   CreateCheckoutSessionRequest({
     required this.successUrl,
     required this.cancelUrl,
@@ -107,6 +113,7 @@ class CreateCheckoutSessionRequest {
     this.taxIdCollection,
     this.paymentIntentData,
     this.subscriptionData,
+    this.metadata,
   });
 
   factory CreateCheckoutSessionRequest.fromJson(Map<String, dynamic> json) =>
@@ -200,19 +207,6 @@ class ProductData {
   factory ProductData.fromJson(Map<String, dynamic> json) =>
       _$ProductDataFromJson(json);
   Map<String, dynamic> toJson() => _$ProductDataToJson(this);
-}
-
-@JsonSerializable()
-class AutomaticTax {
-  final bool enabled;
-
-  AutomaticTax({
-    required this.enabled,
-  });
-
-  factory AutomaticTax.fromJson(Map<String, dynamic> json) =>
-      _$AutomaticTaxFromJson(json);
-  Map<String, dynamic> toJson() => _$AutomaticTaxToJson(this);
 }
 
 @JsonSerializable()
